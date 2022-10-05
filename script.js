@@ -17,16 +17,16 @@ btnAdd.addEventListener('click', function(){
     let petName = prompt("Enter the name of your pet");
     let petAge = prompt("Enter the age of your pet");
     let petDaysAttended = prompt("Enter the days attended");
-    if(petName != "" && petAge != "" && petDaysAttended != ""){
+    if(isEmpty(petName, petAge, petDaysAttended)){
+        alert("Please provide all information (Pet Name, Age, and days attended. Try again)");
+    }
+    else{
         let dog = new Pet(petName, petAge, petDaysAttended);
         mainTable.innerHTML += `
         <td> ${dog.name} </td>
         <td> ${dog.age} </td>
         <td> ${dog.days} </td>
         `;
-    }
-    else{
-        alert("Please provide all information (Pet Name, Age, and days attended. Try again)")
     }  
 });
 
@@ -62,15 +62,18 @@ btnUpdate.addEventListener('click', function(){
                 let newPetAge = prompt("Enter the pet's new age: ");
                 let newPetDaysAttended = prompt("Enter the pet's new days attended: ");
 
-                if(newPetName != "" && newPetAge != "" && newPetDaysAttended != ""){
-                    row.innerHTML = `
-                    <td> ${newPetName} </td>
-                    <td> ${newPetAge} </td>
-                    <td> ${newPetDaysAttended} </td>
-                    `
-                }else{
-                    alert("Please provide all information (Pet Name, Age, and days attended. Try again)")
+                if(isEmpty(newPetName, newPetAge, newPetDaysAttended)){
+                    alert("Please provide all information (Pet Name, Age, and days attended. Try again)");
                 }
+                else{
+                    let dog = new Pet(newPetName, newPetAge, newPetDaysAttended);
+                    mainTable.innerHTML += `
+                    <td> ${dog.name} </td>
+                    <td> ${dog.age} </td>
+                    <td> ${dog.days} </td>
+                    `;
+                } 
+                
             }
     }
 }
@@ -78,3 +81,8 @@ if(!success){
     alert(`Cannot find "${petName}" in the list.`)
 }
 });
+
+            /*CHECK IF ENTERED IS EMPTY*/
+function isEmpty(name, age, days){
+    return (name == null || name.length === 0 || age == null || age.length === 0 || days == null || days.length === 0);
+  }
