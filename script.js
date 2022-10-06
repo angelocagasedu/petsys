@@ -66,11 +66,10 @@ btnUpdate.addEventListener('click', function(){
                     alert("Please provide all information (Pet Name, Age, and days attended. Try again)");
                 }
                 else{
-                    let dog = new Pet(newPetName, newPetAge, newPetDaysAttended);
-                    mainTable.innerHTML += `
-                    <td> ${dog.name} </td>
-                    <td> ${dog.age} </td>
-                    <td> ${dog.days} </td>
+                    row.innerHTML = `
+                    <td> ${newPetName} </td>
+                    <td> ${newPetAge} </td>
+                    <td> ${newPetDaysAttended} </td>
                     `;
                 } 
                 
